@@ -1,0 +1,67 @@
+/*
+Syed Ali
+COSC514 Project 2 
+LRU (Least Recently Used (LRU) Page Replacement algorithm)
+Assignment Due August 2nd, 2020
+*/
+
+#include<stdio.h>
+
+int main()
+{
+  int seq[1000], mem[100];
+  int n, frame, flag, i, j, k,l,temp, pf, c;
+  printf("Enter the number of frames: ");
+  scanf("%d", &frame);
+  printf("Enter the number of pages: ");
+  scanf("%d",&n);
+  printf("Enter the reference string: ");
+
+  for(i = 0; i < n; i++)
+    {
+      scanf("%d", &seq[i]);
+    }
+  printf("\n");
+
+  pf = 0;
+  c = 0;
+
+  for(i = 0; i < n; i++)
+    {
+      flag = 0;
+      for(j = 0; j < c; j++)
+	{
+	  if (mem[j] == seq[i])
+	    {
+	      flag = 1;
+	      break;
+	    }
+	}
+      if(flag == 1)
+	{
+	  if(j < c - 1)
+	    {
+	      for(k = j; k < c - 1; k++)
+		mem[k] = mem[k + 1];
+	    }
+	}
+      else
+	{
+	  pf++;
+	  if ( c < frame)
+	    c++;
+	  else
+	    {
+	      for(k = 0; k < c - 1; k++)
+		mem[k] = mem[k + 1];
+	    }
+	}
+      mem[c - 1] = seq[i];
+    }
+
+printf("Total Page Faults = %d\n", pf); 
+printf("Total Page Hits = %d\n", (n-pf));
+printf("\n");
+  return 0;
+}
+  
