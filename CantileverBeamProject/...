@@ -1,0 +1,2 @@
+The purpose of this project was to solve a cantilever beam problem using numerical methods. Here we were solving for the stresses, strains, and displacements. 
+I used to two methods to solve this problem, one by using triangular elements and second using 4-noded isoparameteric elements. 
